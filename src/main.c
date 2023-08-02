@@ -84,16 +84,15 @@ int main(void)
                 fgets(input, 64, stdin);
                 if (!(validate_input(input) && attempt_move(board, toMove, input[0], input[1]))) 
                         continue;
-         
                 output_board(board);
                 toMove = toMove == 1 ? 2 : 1;
                 turn++;
-                if (turn >= 5) {
-                        int result = checkboard(board);
-                        if (result > 0) {
-                                printf("%c has won the game!\n", int2char(result)); 
-                                break;
-                        }
+                if (!(turn >= 5)) 
+                        continue;
+                int result = checkboard(board);
+                if (result > 0) {
+                        printf("%c has won the game!\n", int2char(result)); 
+                        break;
                 }
                 if (turn >= 9)
                         break;
