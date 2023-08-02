@@ -82,20 +82,21 @@ int main(void)
         while (1) {
                 printf("> %c to move: ", int2char(toMove));
                 fgets(input, 64, stdin);
-                if (validate_input(input) && attempt_move(board, toMove, input[0], input[1])) {
-                        output_board(board);
-                        toMove = toMove == 1 ? 2 : 1;
-                        turn++;
-                        if (turn >= 5) {
-                                int result = checkboard(board);
-                                if (result > 0) {
-                                        printf("%c has won the game!\n", int2char(result)); 
-                                        break;
-                                }
-                        }
-                        if (turn >= 9)
+                if (!(validate_input(input) && attempt_move(board, toMove, input[0], input[1]))) 
+                        continue;
+         
+                output_board(board);
+                toMove = toMove == 1 ? 2 : 1;
+                turn++;
+                if (turn >= 5) {
+                        int result = checkboard(board);
+                        if (result > 0) {
+                                printf("%c has won the game!\n", int2char(result)); 
                                 break;
+                        }
                 }
+                if (turn >= 9)
+                        break;
         }
         printf("Game Over\n");
         free(input);
