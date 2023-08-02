@@ -57,7 +57,7 @@ int checkboard(int board[9]) {
          * verticals
          */
         if (_check(board, 0,3,6) > 0) return _check(board, 0,3,6);
-        if (_check(board, 1,4,5) > 0) return _check(board, 1,4,5);
+        if (_check(board, 1,4,7) > 0) return _check(board, 1,4,7);
         if (_check(board, 2,5,8) > 0) return _check(board, 2,5,8);
 
         /*
