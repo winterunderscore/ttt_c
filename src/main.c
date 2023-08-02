@@ -76,8 +76,7 @@ int main(void)
         int board[9] = 
         {0, 0, 0
         ,0, 0, 0
-        ,0, 0, 0
-        };
+        ,0, 0, 0};
         output_board(board);
         while (1) {
                 printf("> %c to move: ", int2char(toMove));
