@@ -49,7 +49,7 @@ int checkboard(int board[9]) {
         /*
          * horizontals
          */
-        if (_check(board, 0,1,2) > 0) return _check(board, 0,1,3);
+        if (_check(board, 0,1,2) > 0) return _check(board, 0,1,2);
         if (_check(board, 3,4,5) > 0) return _check(board, 3,4,5);
         if (_check(board, 6,7,8) > 0) return _check(board, 6,7,8);
 
