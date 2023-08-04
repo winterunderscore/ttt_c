@@ -73,28 +73,27 @@ int main(void)
         char *input = malloc(64);
         int turn = 0;
         int toMove = 1;
-        int board[9] = 
-        {0, 0, 0
-        ,0, 0, 0
-        ,0, 0, 0};
+        int board[9] = {0};
         output_board(board);
         while (1) {
                 printf("> %c to move: ", int2char(toMove));
                 fgets(input, 64, stdin);
-                if (!(validate_input(input) && attempt_move(board, toMove, input[0], input[1]))) 
-                        continue;
+                
+                if (!(validate_input(input) && attempt_move(board, toMove, input[0], input[1]))) continue;
+
                 output_board(board);
-                toMove = toMove == 1 ? 2 : 1;
+                toMove = 3 - toMove;
                 turn++;
-                if (!(turn >= 5)) 
-                        continue;
+
+                if (turn < 5) continue;
+                if (turn >= 9) break;
+                
                 int result = checkboard(board);
+
                 if (result > 0) {
                         printf("%c has won the game!\n", int2char(result)); 
                         break;
                 }
-                if (turn >= 9)
-                        break;
         }
         printf("Game Over\n");
         free(input);
