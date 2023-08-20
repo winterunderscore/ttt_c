@@ -43,7 +43,7 @@ int attempt_move(int board[9], int to, char col, char row)
         return 1;
 }
 
-int _check(int board[9], int x, int y, int z) 
+static inline int _check(int board[9], int x, int y, int z) 
 {
         return board[x] & board[y] & board[z];
 }
