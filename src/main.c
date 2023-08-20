@@ -81,7 +81,7 @@ int main(void)
         output_board(board);
         while (1) {
                 printf("> %c to move: ", int2char(toMove));
-                fgets(input, 64, stdin);
+                fgets(input, sizeof(input), stdin);
                 
                 if (!(validate_input(input) && attempt_move(board, toMove, input[0], input[1]))) continue;
 
