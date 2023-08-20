@@ -16,7 +16,8 @@ char int2char(int n)
         return ' ';
 }
 
-int validate_input(char *input) {
+int validate_input(char *input) 
+{
         return (input[0] >= 'a' && input[0] <= 'c' &&
                         input[1] >= '1' && input[1] <= '3');
 }
@@ -33,7 +34,8 @@ void output_board(int board[9])
         }
 }
 
-int attempt_move(int board[9], int to, char col, char row) {
+int attempt_move(int board[9], int to, char col, char row) 
+{
         int y = row-'1';
         int x = col-'a';
         if (board[y+(x*3)] != 0) return 0;
@@ -41,11 +43,13 @@ int attempt_move(int board[9], int to, char col, char row) {
         return 1;
 }
 
-int _check(int board[9], int x, int y, int z) {
+int _check(int board[9], int x, int y, int z) 
+{
         return board[x] & board[y] & board[z];
 }
 
-int checkboard(int board[9]) {
+int checkboard(int board[9]) 
+{
         /*
          * horizontals
          */
