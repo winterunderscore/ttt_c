@@ -10,23 +10,25 @@
 char int2char(int n)
 {
         switch (n) {
-        case 1: return 'X'; break;
-        case 2: return 'O'; break;
+        case 1:  return 'X';
+        case 2:  return 'O';
+        default: return ' ';
         }
-        return ' ';
 }
 
 int validate_input(char *input) {
-        return (input[0] >= 'a' && input[0] <= 'c' &&
-                        input[1] >= '1' && input[1] <= '3');
+        int valid_row = input[0] >= 'a' && input[0] <= 'c';
+        int valid_col = input[1] >= '1' && input[1] <= '3';
+
+        return valid_row && valid_col;                        
 }
 
 void output_board(int board[9])
 {
         printf("  1 2 3\n");
-        for (int x=0;x < 3;++x) {
+        for (int x = 0; x < 3; ++x) {
                 printf("%c ", x+'a'); 
-                for (int y=0;y < 3;++y) {
+                for (int y = 0; y < 3; ++y) {
                         printf("%c ", int2char(board[y+(x*3)]));
                 }
                 printf("\n");
@@ -70,7 +72,7 @@ int checkboard(int board[9]) {
 
 int main(void)
 {
-        char *input = malloc(64);
+        char *input = (char*) malloc(64);
         int turn = 0;
         int toMove = 1;
         int board[9] = {0};
@@ -79,8 +81,15 @@ int main(void)
                 printf("> %c to move: ", int2char(toMove));
                 fgets(input, 64, stdin);
                 
-                if (!(validate_input(input) && attempt_move(board, toMove, input[0], input[1]))) continue;
-
+                if (!(validate_input(input))) {
+                        printf("Invalid square!\n");
+                        continue;
+                }
+                if(!attempt_move(board, toMove, input[0], input[1])){
+                        printf("Can't place there!\n");
+                        continue;
+                }
+        
                 output_board(board);
                 toMove = 3 - toMove;
                 turn++;
