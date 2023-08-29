@@ -35,7 +35,8 @@ void output_board(int board[9])
         }
 }
 
-int attempt_move(int board[9], int to, char col, char row) {
+int attempt_move(int board[9], int to, char col, char row) 
+{
         int y = row-'1';
         int x = col-'a';
         if (board[y+(x*3)] != 0) return 0;
@@ -43,11 +44,13 @@ int attempt_move(int board[9], int to, char col, char row) {
         return 1;
 }
 
-int _check(int board[9], int x, int y, int z) {
+static inline int _check(int board[9], int x, int y, int z) 
+{
         return board[x] & board[y] & board[z];
 }
 
-int checkboard(int board[9]) {
+int checkboard(int board[9]) 
+{
         /*
          * horizontals
          */
@@ -79,7 +82,7 @@ int main(void)
         output_board(board);
         while (1) {
                 printf("> %c to move: ", int2char(toMove));
-                fgets(input, 64, stdin);
+                fgets(input, sizeof(input), stdin);
                 
                 if (!(validate_input(input))) {
                         printf("Invalid square!\n");
